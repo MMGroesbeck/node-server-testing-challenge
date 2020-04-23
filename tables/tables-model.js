@@ -24,6 +24,6 @@ function findById(id) {
 
 async function remove(id) {
     return db("tables")
-        .where({ id })
+        .where({ id: id })
         .del();
 };

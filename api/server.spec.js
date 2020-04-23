@@ -60,7 +60,17 @@ describe("server", () => {
     });
   });
   describe("DELETE /api/tables", () => {
-    it.todo("should return status 204");
-    it.todo("should remove item from database");
+    it("should return status 200 and delete", async function () {
+        await request(server)
+            .delete("/api/tables")
+            .send({id:1})
+            .then(res => {
+                expect(res.status).toBe(200);
+            });
+    });
+    it("should have deleted one item", async function () {
+        const tablesNow = await db("tables");
+        expect(tablesNow.length).toBe(1);
+    });
   });
 });

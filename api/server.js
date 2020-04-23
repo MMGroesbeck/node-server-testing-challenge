@@ -33,7 +33,13 @@ server.post("/api/tables", (req, res) => {
 });
 
 server.delete("/api/tables", (req, res) => {
-    return null;
+    Tables.remove(req.body.id)
+        .then(ids => {
+            res.status(200).json({ message: "Item deleted."});
+        })
+        .catch(err => {
+            res.status(500).json({errorMessage: err.message});
+        });
 });
 
 module.exports = server;
