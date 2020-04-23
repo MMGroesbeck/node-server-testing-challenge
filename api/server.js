@@ -23,7 +23,13 @@ server.get("/api/tables", (req, res) => {
 });
 
 server.post("/api/tables", (req, res) => {
-    return null;
+    Tables.insert(req.body)
+        .then(ids => {
+            res.status(201).json({ message: "Added to db." });
+        })
+        .catch(err => {
+            res.status(500).json({errorMessage: err.message});
+        });
 });
 
 server.delete("/api/tables", (req, res) => {
