@@ -28,4 +28,6 @@ server.post("/api/tables", (req, res) => {
 
 server.delete("/api/tables", (req, res) => {
     return null;
-})
+});
+
+module.exports = server;
